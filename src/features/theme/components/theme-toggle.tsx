@@ -1,5 +1,4 @@
 import { CheckIcon, Moon, Sun } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
@@ -7,14 +6,10 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { type Theme, useThemeStore } from '@/store/theme';
+import { useThemeStore } from '@/features/theme/store/theme';
+import type { ThemeToggleOption } from '@/features/theme/types/theme';
 
-type ThemeOption = {
-	key: Theme;
-	label: string;
-};
-
-const themeOptions: ThemeOption[] = [
+const themeOptions: ThemeToggleOption[] = [
 	{ key: 'light', label: 'Light' },
 	{ key: 'dark', label: 'Dark' },
 	{ key: 'system', label: 'System' },

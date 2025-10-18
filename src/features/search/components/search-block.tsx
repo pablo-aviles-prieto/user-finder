@@ -1,6 +1,6 @@
 import { type ComponentProps, useEffect, useId, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { PredictiveSection } from '@/features/search/components/predictive-section';
+import { PredictiveSection } from '@/features/search/components/predictive-section/predictive-section';
 import { useDebounce } from '@/hooks/use-debounce';
 
 export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
@@ -8,7 +8,7 @@ export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
 	const [showPredictiveBlock, setShowPredictiveBlock] = useState(false);
 	const [searchTerm, setSearchTerm] = useState('');
 	const searchInputId = useId();
-	const debouncedTerm = useDebounce(searchTerm);
+	const debouncedTerm = useDebounce(searchTerm.trim());
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -24,6 +24,7 @@ export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
 	return (
 		<div className='relative mx-auto max-w-4xl space-y-1.5' ref={containerRef}>
 			<Input
+				autoComplete='off'
 				id={`${searchInputId}-search-input`}
 				onChange={(e) => setSearchTerm(e.target.value)}
 				onClick={() => setShowPredictiveBlock(true)}

@@ -1,14 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { ThemeOption, ThemeStore } from '@/features/theme/types/theme';
 
-export type Theme = 'dark' | 'light' | 'system';
-
-type ThemeStore = {
-	theme: Theme;
-	setTheme: (theme: Theme) => void;
-};
-
-const applyTheme = (theme: Theme) => {
+const applyTheme = (theme: ThemeOption) => {
 	const root = window.document.documentElement;
 	root.classList.remove('light', 'dark');
 

@@ -1,6 +1,6 @@
 import { HeaderBlock } from '@/components/header-block';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { SearchBlock } from '@/features/search/components/search-block';
+import { ThemeToggle } from '@/features/theme/components/theme-toggle';
 
 export const App = () => (
 	<section className='relative min-h-screen space-y-12 p-4 lg:p-12'>
