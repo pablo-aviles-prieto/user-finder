@@ -17,7 +17,7 @@ export const RenderContent = ({ debouncedTerm }: RenderContentProps) => {
 	if (isLoading) {
 		return (
 			<div className='flex min-h-24 items-center justify-center bg-inherit'>
-				<Loader2 className='size-8 animate-spin' />
+				<Loader2 className='size-8 animate-spin text-primary' />
 			</div>
 		);
 	}
@@ -33,7 +33,7 @@ export const RenderContent = ({ debouncedTerm }: RenderContentProps) => {
 	return (
 		<ul className='divide-y'>
 			{userData.map((user) => (
-				<li className='cursor-pointer p-3 hover:bg-primary/20' key={user.id}>
+				<li className='cursor-pointer p-3 hover:bg-primary/30' key={user.id}>
 					<button className='w-full cursor-pointer text-left' onClick={() => setSelectedUser(user)} type='button'>
 						{user.name} <span className='text-muted-foreground text-sm'>[{user.email}]</span>
 					</button>
