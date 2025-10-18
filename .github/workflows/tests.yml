@@ -20,6 +20,8 @@ jobs:
         run: pnpm install
       - name: Run Vitest tests
         run: pnpm test:unit
+        env:
+          VITE_USER_API_ENDPOINT: ${{ secrets.VITE_USER_API_ENDPOINT }}
   e2e:
     timeout-minutes: 60
     runs-on: ubuntu-latest
@@ -39,6 +41,8 @@ jobs:
       run: pnpm install
     - name: Run Playwright tests (chromium only)
       run: pnpm exec playwright test --project=chromium --reporter=html
+      env:
+        VITE_USER_API_ENDPOINT: ${{ secrets.VITE_USER_API_ENDPOINT }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
