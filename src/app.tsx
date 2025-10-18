@@ -1,6 +1,6 @@
-import { HeaderSection } from '@/components/header-section';
-import { SearchInput } from '@/components/search-input';
+import { HeaderBlock } from '@/components/header-block';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { SearchBlock } from '@/features/search/components/search-block';
 
 export const App = () => (
 	<section className='relative min-h-screen space-y-12 p-4 lg:p-12'>
@@ -8,7 +8,7 @@ export const App = () => (
 			<ThemeToggle />
 		</div>
 
-		<HeaderSection subtitle='Search for users by name or email with real-time results' title='User Searcher App' />
-		<SearchInput placeholder='Search users by name or email...' />
+		<HeaderBlock subtitle='Search for users by name or email with real-time results' title='User Finder App' />
+		<SearchBlock placeholder='Search users by name or email...' />
 	</section>
 );

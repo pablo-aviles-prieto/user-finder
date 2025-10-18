@@ -31,7 +31,7 @@ export const useThemeStore = create<ThemeStore>()(
 			},
 		}),
 		{
-			name: 'user-searcher-theme',
+			name: 'user-finder-theme',
 			onRehydrateStorage: () => (state) => {
 				if (state) {
 					applyTheme(state.theme);
