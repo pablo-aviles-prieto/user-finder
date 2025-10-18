@@ -9,6 +9,6 @@ export const App = () => (
 		</div>
 
 		<HeaderBlock subtitle='Search for users by name or email with real-time results' title='User Finder App' />
-		<SearchBlock placeholder='Search users by name or email...' />
+		<SearchBlock />
 	</section>
 );

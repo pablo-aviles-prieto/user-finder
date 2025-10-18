@@ -28,7 +28,7 @@ export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
 				id={`${searchInputId}-search-input`}
 				onChange={(e) => setSearchTerm(e.target.value)}
 				onClick={() => setShowPredictiveBlock(true)}
-				placeholder='Search...'
+				placeholder='Search users by name or email...'
 				{...inputOptions}
 			/>
 			<PredictiveSection debouncedTerm={debouncedTerm} showPredictiveBlock={showPredictiveBlock} />

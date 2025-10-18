@@ -1,10 +1,10 @@
-import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { App } from '@/app';
+import { render } from '@/test/utils';
 
 describe('App', () => {
-	it('renders hello world', () => {
+	it('renders user finder app', () => {
 		const { getByText } = render(<App />);
-		expect(getByText('Hello world')).toBeInTheDocument();
+		expect(getByText('User Finder App')).toBeInTheDocument();
 	});
 });
