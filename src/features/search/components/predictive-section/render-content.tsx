@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { AlertCircle, Loader2, UserIcon } from 'lucide-react';
+import { AlertCircle, UserIcon } from 'lucide-react';
 import { useMemo } from 'react';
+import { Loader } from '@/components/loader';
 import { useSelectedUser } from '@/context/selected-user-context';
 import { cn } from '@/lib/utils';
 import userRepository from '@/services/user-repository';
@@ -22,11 +23,7 @@ export const RenderContent = ({ debouncedTerm, onClose }: RenderContentProps) =>
 	};
 
 	if (isLoading) {
-		return (
-			<div className='flex min-h-24 items-center justify-center bg-inherit'>
-				<Loader2 className='size-8 animate-spin text-primary' />
-			</div>
-		);
+		return <Loader />;
 	}
 
 	if (error) {
@@ -44,7 +41,7 @@ export const RenderContent = ({ debouncedTerm, onClose }: RenderContentProps) =>
 	if (userData.length === 0 && debouncedTerm) {
 		return (
 			<div className='p-8 text-center'>
-				<UserIcon className='mx-auto mb-3 h-12 w-12 text-muted-foreground/50' />
+				<UserIcon className='mx-auto mb-3 size-12 text-muted-foreground/50' />
 				<p className='font-medium text-muted-foreground'>No users found</p>
 				<p className='text-muted-foreground text-sm'>Try searching with a different name or email</p>
 			</div>
