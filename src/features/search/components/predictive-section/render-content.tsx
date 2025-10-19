@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Loader2 } from 'lucide-react';
+import { Loader2, MailIcon, UserRound } from 'lucide-react';
 import { useMemo } from 'react';
 import { useSelectedUser } from '@/context/selected-user-context';
 import { SingleItem } from '@/features/search/components/predictive-section/single-item';
@@ -33,9 +33,18 @@ export const RenderContent = ({ debouncedTerm }: RenderContentProps) => {
 	return (
 		<ul className='divide-y'>
 			{userData.map((user) => (
-				<li className='cursor-pointer p-3 hover:bg-primary/30' key={user.id}>
-					<button className='w-full cursor-pointer text-left' onClick={() => setSelectedUser(user)} type='button'>
-						{user.name} <span className='text-muted-foreground text-sm'>[{user.email}]</span>
+				<li className='cursor-pointer hover:bg-primary/30' key={user.id}>
+					<button
+						className='flex w-full cursor-pointer items-center gap-4 p-3 text-left [&_span]:flex [&_span]:items-center [&_span]:gap-1 [&_svg]:size-4'
+						onClick={() => setSelectedUser(user)}
+						type='button'
+					>
+						<span className='leading-tight'>
+							<UserRound /> {user.name}
+						</span>
+						<span className='text-muted-foreground text-sm'>
+							<MailIcon /> [{user.email}]
+						</span>
 					</button>
 				</li>
 			))}

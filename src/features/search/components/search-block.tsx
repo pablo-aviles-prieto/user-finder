@@ -1,3 +1,4 @@
+import { SearchIcon } from 'lucide-react';
 import { type ComponentProps, useEffect, useId, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { PredictiveSection } from '@/features/search/components/predictive-section/predictive-section';
@@ -22,9 +23,11 @@ export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
 	}, []);
 
 	return (
-		<div className='relative mx-auto max-w-4xl space-y-1.5' ref={containerRef}>
+		<div className='relative mx-auto max-w-4xl' ref={containerRef}>
+			<SearchIcon className='-translate-y-1/2 absolute top-1/2 left-2.5 size-4' />
 			<Input
 				autoComplete='off'
+				className='pl-7.5'
 				id={`${searchInputId}-search-input`}
 				onChange={(e) => setSearchTerm(e.target.value)}
 				onClick={() => setShowPredictiveBlock(true)}

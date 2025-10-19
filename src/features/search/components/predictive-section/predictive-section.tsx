@@ -36,8 +36,8 @@ export const PredictiveSection = ({ showPredictiveBlock, debouncedTerm }: Predic
 	return (
 		<div
 			className={cn(
-				'absolute inset-x-0 z-20 max-h-52 overflow-auto rounded-md border bg-background transition-[height,border-color] duration-300 ease-in-out',
-				height === 0 ? 'border-transparent' : 'border-accent'
+				'absolute inset-x-0 top-10.5 z-20 max-h-52 overflow-auto rounded-md border-accent bg-card transition-[height,border] duration-300 ease-in-out',
+				height === 0 ? 'border-0' : 'border'
 			)}
 			style={{ height }}
 		>
