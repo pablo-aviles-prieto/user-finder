@@ -2,20 +2,21 @@ import { useQuery } from '@tanstack/react-query';
 import { Building, Globe, Mail, MapPin, Phone, UserIcon } from 'lucide-react';
 import { Loader } from '@/components/loader';
 import { useSelectedUser } from '@/context/selected-user-context';
+import { ErrorBlock } from '@/features/user-details/components/error-block';
 import { InfoField } from '@/features/user-details/components/info-field';
 import type { UserInfoDetail } from '@/features/user-details/types/user-info-detail';
 import userRepository from '@/services/user-repository';
 
 export const UserDetails = () => {
 	const { selectedUser } = useSelectedUser();
-	const {
-		data: userDetails,
-		isLoading,
-		error: _error,
-	} = useQuery(userRepository.getUserDetailsQueryOptions(selectedUser?.id));
+	const { data: userDetails, isLoading, error } = useQuery(userRepository.getUserDetailsQueryOptions(selectedUser?.id));
 
 	if (isLoading) {
 		return <Loader />;
+	}
+
+	if (error) {
+		return <ErrorBlock error={error} />;
 	}
 
 	if (!selectedUser || !userDetails) {

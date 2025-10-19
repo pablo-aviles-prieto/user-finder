@@ -29,7 +29,7 @@ test.describe('Search feature', () => {
 		await expect(page.getByText('No users found')).toBeVisible({ timeout: 5000 });
 	});
 
-	test('displays error message when request fails', async ({ page }) => {
+	test('displays error message when user list request fails', async ({ page }) => {
 		// Intercept the users API request
 		await page.route('https://jsonplaceholder.typicode.com/users', (route) => {
 			route.fulfill({
