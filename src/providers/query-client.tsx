@@ -6,6 +6,7 @@ const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			gcTime: SECOND_IN_MS * 60 * 60 * 24, // 24 hours
+			staleTime: SECOND_IN_MS * 60 * 60, // 1 hour
 		},
 	},
 });

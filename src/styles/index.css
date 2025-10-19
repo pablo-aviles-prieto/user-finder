@@ -133,4 +133,7 @@
 	h1 {
 		@apply text-2xl lg:text-4xl;
 	}
+	h2 {
+		@apply text-xl lg:text-3xl;
+	}
 }
