@@ -39,4 +39,26 @@ test.describe('User details feature', () => {
 		// Dropdown is still on the DOM but not on the viewport
 		await expect(userButton).not.toBeInViewport();
 	});
+
+	test('displays error message when user details request fails', async ({ page }) => {
+		// Intercept the users API request
+		await page.route('https://jsonplaceholder.typicode.com/users/**', (route) => {
+			route.fulfill({
+				status: 500,
+				contentType: 'application/json',
+				body: JSON.stringify({ message: 'Internal Server Error' }),
+			});
+		});
+
+		const searchInput = page.getByPlaceholder('Search users by name or email...');
+		await searchInput.fill('Leanne');
+		await searchInput.click();
+		await page.waitForLoadState('networkidle');
+
+		const userButton = page.getByTestId('user-option-1');
+		await userButton.click();
+		await page.waitForLoadState('networkidle');
+
+		await expect(page.getByText('Error loading user details')).toBeVisible();
+	});
 });
