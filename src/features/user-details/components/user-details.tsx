@@ -56,8 +56,11 @@ export const UserDetails = () => {
 			<div className='mb-8 flex items-center gap-5'>
 				<div className='relative'>
 					<div className='absolute inset-0 rounded-full bg-gradient-to-br from-primary/50 to-primary/20 blur-[2px]' />
-					<div className='relative flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/20 text-primary-foreground shadow-lg lg:size-20'>
-						<UserIcon className='size-7 lg:size-10' />
+					<div
+						className='relative flex size-[var(--user-icon-size-mobile)] items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/20 text-primary-foreground shadow-lg lg:size-[var(--user-icon-size-desktop)]'
+						style={{ '--user-icon-size-mobile': '3.5rem', '--user-icon-size-desktop': '5rem' } as React.CSSProperties}
+					>
+						<UserIcon className='size-[calc(var(--user-icon-size-mobile)/2)] lg:size-[calc(var(--user-icon-size-desktop)/2)]' />
 					</div>
 				</div>
 				<div>
