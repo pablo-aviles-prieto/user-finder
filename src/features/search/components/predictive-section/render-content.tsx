@@ -54,9 +54,10 @@ export const RenderContent = ({ debouncedTerm, onClose }: RenderContentProps) =>
 				<li key={user.id}>
 					<button
 						className={cn(
-							'w-full px-3 py-2 text-left transition-colors hover:bg-accent lg:px-4 lg:py-3',
+							'w-full cursor-pointer px-3 py-2 text-left transition-colors hover:bg-accent lg:px-4 lg:py-3',
 							'focus:bg-accent focus:outline-none'
 						)}
+						data-testid={`user-option-${user.id}`}
 						onClick={() => handleUserSelect(user)}
 						type='button'
 					>
