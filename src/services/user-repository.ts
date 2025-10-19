@@ -40,6 +40,17 @@ class UserRepository {
 		return res.json();
 	}
 
+	private async fetchUserDetails(userId: User['id'] | undefined): Promise<User> {
+		if (!userId) {
+			throw new Error('Invalid user ID');
+		}
+		const res = await fetch(`${this.endpoint}/users/${userId}`);
+		if (!res.ok) {
+			throw new Error('Failed to fetch user details');
+		}
+		return res.json();
+	}
+
 	getUsersQueryOptions(searchWord: string) {
 		return queryOptions({
 			queryKey: ['users', searchWord],
@@ -50,6 +61,18 @@ class UserRepository {
 			},
 			staleTime: Number.POSITIVE_INFINITY,
 			enabled: !!searchWord.trim(),
+		});
+	}
+
+	getUserDetailsQueryOptions(userId: number | undefined) {
+		return queryOptions({
+			queryKey: ['user', userId],
+			queryFn: async () => {
+				const userDetails = await this.fetchUserDetails(userId);
+				return this.throttleData(userDetails);
+			},
+			staleTime: Number.POSITIVE_INFINITY,
+			enabled: typeof userId === 'number' && !Number.isNaN(userId),
 		});
 	}
 }
