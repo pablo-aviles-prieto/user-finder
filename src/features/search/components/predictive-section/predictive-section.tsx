@@ -8,6 +8,8 @@ type PredictiveSectionProps = {
 	onClose: () => void;
 };
 
+const BORDER_WIDTH = 1; // in pxs
+
 export const PredictiveSection = ({ showPredictiveBlock, debouncedTerm, onClose }: PredictiveSectionProps) => {
 	const contentRef = useRef<HTMLDivElement>(null);
 	const [height, setHeight] = useState(0);
@@ -21,12 +23,11 @@ export const PredictiveSection = ({ showPredictiveBlock, debouncedTerm, onClose 
 		const resizeObserver = new ResizeObserver((entries) => {
 			for (const entry of entries) {
 				const newHeight = entry.target.scrollHeight;
-				setHeight(newHeight);
+				setHeight(newHeight > 0 ? newHeight + BORDER_WIDTH * 2 : 0);
 			}
 		});
 		resizeObserver.observe(contentRef.current);
 
-		// Set initial height
 		setHeight(contentRef.current.scrollHeight);
 
 		return () => {
