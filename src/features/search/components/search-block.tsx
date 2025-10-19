@@ -1,5 +1,5 @@
 import { SearchIcon } from 'lucide-react';
-import { type ComponentProps, useEffect, useId, useRef, useState } from 'react';
+import { type ComponentProps, useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { PredictiveSection } from '@/features/search/components/predictive-section/predictive-section';
 import { useDebounce } from '@/hooks/use-debounce';
@@ -11,16 +11,18 @@ export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
 	const searchInputId = useId();
 	const debouncedTerm = useDebounce(searchTerm.trim());
 
+	const closePredictiveBlock = useCallback(() => setShowPredictiveBlock(false), []);
+
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-				setShowPredictiveBlock(false);
+				closePredictiveBlock();
 			}
 		};
 
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => document.removeEventListener('mousedown', handleClickOutside);
-	}, []);
+	}, [closePredictiveBlock]);
 
 	return (
 		<div className='relative mx-auto max-w-4xl' ref={containerRef}>
@@ -34,7 +36,11 @@ export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
 				placeholder='Search users by name or email...'
 				{...inputOptions}
 			/>
-			<PredictiveSection debouncedTerm={debouncedTerm} showPredictiveBlock={showPredictiveBlock} />
+			<PredictiveSection
+				debouncedTerm={debouncedTerm}
+				onClose={closePredictiveBlock}
+				showPredictiveBlock={showPredictiveBlock}
+			/>
 		</div>
 	);
 };

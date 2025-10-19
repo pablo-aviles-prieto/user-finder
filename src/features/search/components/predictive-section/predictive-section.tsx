@@ -5,9 +5,10 @@ import { cn } from '@/lib/utils';
 type PredictiveSectionProps = {
 	showPredictiveBlock: boolean;
 	debouncedTerm: string;
+	onClose: () => void;
 };
 
-export const PredictiveSection = ({ showPredictiveBlock, debouncedTerm }: PredictiveSectionProps) => {
+export const PredictiveSection = ({ showPredictiveBlock, debouncedTerm, onClose }: PredictiveSectionProps) => {
 	const contentRef = useRef<HTMLDivElement>(null);
 	const [height, setHeight] = useState(0);
 
@@ -42,7 +43,7 @@ export const PredictiveSection = ({ showPredictiveBlock, debouncedTerm }: Predic
 			style={{ height }}
 		>
 			<div ref={contentRef}>
-				<RenderContent debouncedTerm={debouncedTerm} />
+				<RenderContent debouncedTerm={debouncedTerm} onClose={onClose} />
 			</div>
 		</div>
 	);

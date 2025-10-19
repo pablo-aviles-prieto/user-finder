@@ -4,12 +4,14 @@ import { useMemo } from 'react';
 import { useSelectedUser } from '@/context/selected-user-context';
 import { SingleItem } from '@/features/search/components/predictive-section/single-item';
 import userRepository from '@/services/user-repository';
+import type { User } from '@/types/user';
 
 type RenderContentProps = {
 	debouncedTerm: string;
+	onClose: () => void;
 };
 
-export const RenderContent = ({ debouncedTerm }: RenderContentProps) => {
+export const RenderContent = ({ debouncedTerm, onClose }: RenderContentProps) => {
 	const { data, isLoading, error } = useQuery(userRepository.getUsersQueryOptions(debouncedTerm));
 	const userData = useMemo(() => data || [], [data]);
 	const { setSelectedUser } = useSelectedUser();
@@ -30,13 +32,18 @@ export const RenderContent = ({ debouncedTerm }: RenderContentProps) => {
 		return <SingleItem className='text-muted-foreground' content='No results found' />;
 	}
 
+	const handleUserSelect = (user: User) => {
+		setSelectedUser(user);
+		onClose();
+	};
+
 	return (
 		<ul className='divide-y'>
 			{userData.map((user) => (
 				<li className='cursor-pointer hover:bg-primary/30' key={user.id}>
 					<button
 						className='flex w-full cursor-pointer items-center gap-4 p-3 text-left [&_span]:flex [&_span]:items-center [&_span]:gap-1 [&_svg]:size-4'
-						onClick={() => setSelectedUser(user)}
+						onClick={() => handleUserSelect(user)}
 						type='button'
 					>
 						<span className='leading-tight'>
