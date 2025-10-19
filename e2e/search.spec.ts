@@ -30,7 +30,7 @@ test.describe('Search feature', () => {
 	});
 
 	test('displays error message when request fails', async ({ page }) => {
-		// Intercept the user details API call and make it fail
+		// Intercept the users API request
 		await page.route('https://jsonplaceholder.typicode.com/users', (route) => {
 			route.fulfill({
 				status: 500,
@@ -44,7 +44,6 @@ test.describe('Search feature', () => {
 		await searchInput.click();
 		await page.waitForLoadState('networkidle');
 
-		// Verify error is displayed (adjust based on your error UI)
 		await expect(page.getByText('Error loading users')).toBeVisible();
 	});
 });
