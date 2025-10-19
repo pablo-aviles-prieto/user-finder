@@ -25,7 +25,7 @@ export const SearchBlock = (inputOptions: ComponentProps<'input'>) => {
 	}, [closePredictiveBlock]);
 
 	return (
-		<div className='relative mx-auto max-w-4xl' ref={containerRef}>
+		<div className='relative' ref={containerRef}>
 			<SearchIcon className='-translate-y-1/2 absolute top-1/2 left-2.5 size-4' />
 			<Input
 				autoComplete='off'
