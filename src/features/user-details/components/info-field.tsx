@@ -12,9 +12,9 @@ export const InfoField = ({ label, value, useFullCols, icon: Icon }: UserInfoDet
 			<div className='rounded-md bg-primary/10 p-2 transition-colors group-hover:bg-primary/20'>
 				<Icon className='size-5 text-primary lg:size-6' />
 			</div>
-			<div className='min-w-0 flex-1'>
+			<div className='min-w-0 flex-1 space-y-0.5'>
 				<p className='font-medium text-muted-foreground text-xs uppercase tracking-wide'>{label}</p>
-				<p className='mt-1 truncate font-medium text-foreground'>{value}</p>
+				<p className='truncate font-medium text-foreground'>{value}</p>
 			</div>
 		</div>
 	</div>
